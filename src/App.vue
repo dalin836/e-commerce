@@ -1,85 +1,109 @@
-<script setup lang="ts">
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
-</script>
+ <template>
+  <div id="app">
+    <h2></h2>
 
-<template>
-  <header>
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-    <h1>This is my first VueJs project</h1>
-    <!-- <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="category-list">
+      <CategoryCom
+        v-for="(cat, index) in categories"
+        :key="index"
+        :image="cat.image"
+        :title="cat.title"
+        :items="cat.items"
+      />
+    </div>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div> -->
-  </header>
+    <h2></h2>
 
-  <RouterView />
+    <div class="Promo-list">
+      <PromotionCom
+        v-for="(promo, index) in promotions"
+        :key="index"
+        :title="promo.title"
+        :image="promo.image"
+        :buttonLabel="promo.buttonLabel"
+        :buttonColor="promo.buttonColor"
+        :backgroundColor="promo.backgroundColor"
+      />
+    </div>
+  </div>
 </template>
 
-<style scoped>
-header {
-  /* line-height: 1.5; */
-  max-height: 100vh;
+<script lang="ts">
+import CategoryCom from './components/categoryComponents.vue'
+import PromotionCom from './components/promotionComponent.vue'
+
+export default {
+  name: 'App',
+  components: { CategoryCom, PromotionCom },
+
+  data() {
+    return {
+      categories: [
+        {
+          image: '/picture/cake&milk.png',
+          title: 'Cake & Milk',
+          items: 14,
+        },
+        { image: '/picture/peach.png', title: 'Peach', items: 17 },
+        { image: '/picture/oganicKiwi.png', title: 'Organic Kiwi', items: 21 },
+        { image: '/picture/redApple.png', title: 'Red Apple', items: 68 },
+        { image: '/picture/snack.png', title: 'Snack', items: 34 },
+        { image: '/picture/blackPlum.png', title: 'Block plum', items: 25 },
+        { image: '/picture/vegetable.png', title: 'Vegetables', items: 65 },
+        { image: '/picture/headphone.png', title: 'Headphone', items: 33 },
+        { image: '/picture/Cake_milk.png', title: 'Cake & Milk', items: 54 },
+        { image: '/picture/orange.png', title: 'Orange', items: 63 },
+      ],
+
+      promotions: [
+        {
+          title: 'Everyday Fresh & Clean with Our Products',
+          image: 'public/picture/promotion1.png',
+          buttonLabel: 'Shop Now ➜',
+          buttonColor: '#2ecc71',
+          backgroundColor: '#F0E8D5',
+        },
+        {
+          title: 'Make your Breakfast Healthy and Easy',
+          image: 'public/picture/promotion2.png',
+          buttonLabel: 'Shop Now ➜',
+          buttonColor: '#3498db',
+          backgroundColor: '#F3E8E8',
+        },
+        {
+          title: 'Super Sale on Fresh Items',
+          image: 'public/picture/promotion3.png',
+          buttonLabel: 'Shop Now ➜',
+          buttonColor: '#FDC040',
+          backgroundColor: '#E7EAF3',
+        },
+      ],
+    }
+  },
+}
+</script>
+
+<style>
+#app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+h2 {
+  margin-bottom: 10px;
+  color: #333;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.category-list {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
 }
+.Promo-list {
+  display: flex;
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+  gap: 15px;
+  margin-top: 40px;
 }
 </style>
