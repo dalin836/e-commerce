@@ -2,13 +2,14 @@
   <div class="promotion" :style="{ backgroundColor: backgroundColor }">
     <div class="promotion-text">
       <h2>{{ title }}</h2>
-      <ButtonCom :label="buttonLabel" :color="buttonColor" />
+      <ButtonCom :label="buttonLabel" :color="buttonColor" :Titlepromotion="{ titlepro: titlepro }"/>
     </div>
     <img :src="image" :alt="title" class="promotion-image" />
   </div>
 </template>
 
 <script lang="ts">
+
 import ButtonCom from './buttonComponent.vue'
 
 export default {
@@ -19,6 +20,10 @@ export default {
     image: String,
     buttonLabel: String,
     buttonColor: String,
+    titlepro: {
+      type: String,
+      default: '',
+    },
     backgroundColor: {
       type: String,
       default: '#f0e8d5',

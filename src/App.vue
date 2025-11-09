@@ -23,6 +23,7 @@
         :buttonLabel="promo.buttonLabel"
         :buttonColor="promo.buttonColor"
         :backgroundColor="promo.backgroundColor"
+        :titlepro="promo.title"
       />
     </div>
   </div>
@@ -62,6 +63,7 @@ export default {
           buttonLabel: 'Shop Now ➜',
           buttonColor: '#2ecc71',
           backgroundColor: '#F0E8D5',
+
         },
         {
           title: 'Make your Breakfast Healthy and Easy',
@@ -80,6 +82,7 @@ export default {
       ],
     }
   },
+
 }
 </script>
 
