@@ -1,19 +1,17 @@
- <template>
+<template>
   <div id="app">
-    <h2></h2>
-
+    <h2>Categories</h2>
     <div class="category-list">
       <CategoryCom
         v-for="(cat, index) in categories"
         :key="index"
         :image="cat.image"
-        :title="cat.title"
-        :items="cat.items"
+        :title="cat.name"
+        :items="cat.productCount"
       />
     </div>
 
-    <h2></h2>
-
+    <h2>Promotions</h2>
     <div class="Promo-list">
       <PromotionCom
         v-for="(promo, index) in promotions"
@@ -30,61 +28,68 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import CategoryCom from './components/categoryComponents.vue'
 import PromotionCom from './components/promotionComponent.vue'
 
-export default {
+interface Category {
+  productCount: number
+  image: string
+  name: string
+}
+
+interface Promotion {
+  title: string
+  image: string
+  buttonLabel: string
+  buttonColor: string
+  backgroundColor: string
+}
+
+export default defineComponent({
   name: 'App',
   components: { CategoryCom, PromotionCom },
 
   data() {
     return {
-      categories: [
-        {
-          image: '/picture/cake&milk.png',
-          title: 'Cake & Milk',
-          items: 14,
-        },
-        { image: '/picture/peach.png', title: 'Peach', items: 17 },
-        { image: '/picture/oganicKiwi.png', title: 'Organic Kiwi', items: 21 },
-        { image: '/picture/redApple.png', title: 'Red Apple', items: 68 },
-        { image: '/picture/snack.png', title: 'Snack', items: 34 },
-        { image: '/picture/blackPlum.png', title: 'Block plum', items: 25 },
-        { image: '/picture/vegetable.png', title: 'Vegetables', items: 65 },
-        { image: '/picture/headphone.png', title: 'Headphone', items: 33 },
-        { image: '/picture/Cake_milk.png', title: 'Cake & Milk', items: 54 },
-        { image: '/picture/orange.png', title: 'Orange', items: 63 },
-      ],
-
-      promotions: [
-        {
-          title: 'Everyday Fresh & Clean with Our Products',
-          image: 'public/picture/promotion1.png',
-          buttonLabel: 'Shop Now ➜',
-          buttonColor: '#2ecc71',
-          backgroundColor: '#F0E8D5',
-
-        },
-        {
-          title: 'Make your Breakfast Healthy and Easy',
-          image: 'public/picture/promotion2.png',
-          buttonLabel: 'Shop Now ➜',
-          buttonColor: '#3498db',
-          backgroundColor: '#F3E8E8',
-        },
-        {
-          title: 'Super Sale on Fresh Items',
-          image: 'public/picture/promotion3.png',
-          buttonLabel: 'Shop Now ➜',
-          buttonColor: '#FDC040',
-          backgroundColor: '#E7EAF3',
-        },
-      ],
+      categories: [] as Category[],
+      promotions: [] as Promotion[],
     }
   },
+  methods: {
+   async fetchCategories() {
+  try {
+    const response = await fetch('http://localhost:3000/api/categories')
+    const rawData: Category[] = await response.json()
 
-}
+    this.categories = rawData.map(cat => ({
+      ...cat,
+      image: `http://localhost:3000/${cat.image.replace(/\\/g, '/')}`, // ✅ fix path
+    }))
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+  }
+  },
+    async fetchPromotions() {
+      try {
+        const response = await fetch('http://localhost:3000/api/promotions')
+        const data: Promotion[] = await response.json()
+        this.promotions = data.map(promo => ({
+          ...promo,
+          image: `http://localhost:3000/${promo.image.replace(/\\/g, '/')}`, // ✅ fix path
+        }))
+      } catch (error) {
+        console.error('Error fetching promotions:', error)
+      }
+    },
+  },
+  mounted() {
+    this.fetchCategories()
+    this.fetchPromotions()
+  },
+})
 </script>
+
 
 <style>
 #app {
@@ -95,7 +100,7 @@ export default {
 
 h2 {
   margin-bottom: 10px;
-  color: #333;
+  color: #d6dcdd;
 }
 
 .category-list {
