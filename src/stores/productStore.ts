@@ -12,6 +12,7 @@ interface Category {
   id: number;
   name: string;
   group: string; // must match the group's name
+  productCount?: number;
 }
 
 interface Promotion {

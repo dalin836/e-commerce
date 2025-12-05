@@ -63,8 +63,8 @@
 
 import CategoryCom from './components/categoryComponents.vue'
 import PromotionCom from './components/promotionComponent.vue'
-// import MenuCom from '../components/MenuCom.vue'
-import ProductCard from './components/buttonComponent.vue'
+import MenuCom from './components/meunComponent.vue'
+import ProductCard from './components/productComponent.vue'
 
 // Import product store (corrected)
 import { useProductStore } from '@/stores/productStore'
