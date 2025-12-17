@@ -12,7 +12,7 @@ interface Category {
   id: number;
   name: string;
   group: string; // must match the group's name
-  productCount?: number;
+  productCount: number;
 }
 
 interface Promotion {
@@ -75,9 +75,12 @@ export const useProductStore = defineStore("product", {
         this.promotions = promoRes.data;
         this.groups = groupRes.data;
         this.products = prodRes.data;
+
       } catch (err) {
         console.error("Failed loading API:", err);
       }
     }
   }
 });
+
+
