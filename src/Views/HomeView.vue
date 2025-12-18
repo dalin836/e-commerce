@@ -3,6 +3,8 @@
 
   <MeunItemComponent/>
   <showcaseComponent/>
+  <ProductView/>
+
 
   <div id="app">
 
@@ -72,10 +74,13 @@ import ProductCard from '../components/productComponent.vue'
 import showcaseComponent from '../components/showcaseComponent.vue'
 import MeunItemComponent from '@/components/MeunItemComponent.vue'
 
+
 // Import product store (corrected)
 import { useProductStore } from '@/stores/productStore'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+
+// import  ProductViewVue from './ProductView.vue'
 
 const productStore = useProductStore()
 const categories = ref<Category[]>([])

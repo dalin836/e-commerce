@@ -1,9 +1,11 @@
  <template>
-  <div class="category-item">
-    <img :src="image" :alt="title" class="category-image" />
-    <h4>{{ title }}</h4>
-    <p>{{ items }} items</p>
-  </div>
+  <RouterLink :to="`/category/${title}`" class="category-link">
+    <div class="category-item">
+      <img :src="image" :alt="title" class="category-image" />
+      <h4>{{ title }}</h4>
+      <p>{{ items }} items</p>
+    </div>
+  </RouterLink>
 </template>
 
 <script lang="ts">

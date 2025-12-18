@@ -1,4 +1,6 @@
    <template>
+
+
   <div class="promotion" :style="{ backgroundColor: backgroundColor }">
     <div class="promotion-text">
       <h2>{{ title }}</h2>

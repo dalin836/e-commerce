@@ -1,5 +1,12 @@
 <template>
-  <div class="product-card">
+
+ <RouterLink
+    :to="{ name: 'productDetail', params: { id: product.id } }"
+    class="product-card"
+  >
+
+  <div class="product-card" >
+
     <!-- BADGE -->
     <div v-if="badgeText" class="badge" :class="badgeColor">
       {{ badgeText }}
@@ -8,7 +15,7 @@
     <!-- IMAGE -->
     <img :src="image" class="product-img" alt="Product image" />
 
-    <div class="info">
+    <div class="info" >
       <p class="brand">{{ product.group }}</p>
       <h3 class="title">{{ product.name }}</h3>
 
@@ -46,10 +53,16 @@
       </div>
     </div>
   </div>
+
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+
+// const props = defineProps({
+//   product: Object,
+// });
 
 const props = defineProps<{
   product: {

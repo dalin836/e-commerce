@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- Router will inject the matched component here -->
-  <HomeView/>
+    <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-  import HomeView from './Views/HomeView.vue';
+  // import HomeView from './Views/HomeView.vue';
 </script>
 
